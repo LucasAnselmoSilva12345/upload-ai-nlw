@@ -1,3 +1,5 @@
+import { Button } from './components/ui/button';
+
 export function App() {
-  return <h1 className="text-3xl font-poppins font-bold">Hello world!</h1>;
+  return <Button>Teste</Button>;
 }
