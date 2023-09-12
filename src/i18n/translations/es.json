@@ -2,7 +2,7 @@
   "translation": {
     "textAreaIncludePrompt": "Incluye el prompt para la IA...",
     "textAreaResultPrompt": "Resultado generado por la IA",
-    "reminder_message": "Recuerda: Puedes usar la variable <code className=\"text-emerald-400\">{'{transcription}'}</code> en tu prompt para agregar la descripción del video seleccionado.",
+    "ReminderMessage": "Recuerda: Puedes usar la variable 'transcription' en tu prompt para agregar la descripción del video seleccionado.",
     "SelectedUploadVideo": "Selecciona un video",
     "TranscriptionPrompt": "Prompt de Transcripción",
     "keywords": "Incluye las palabras clave mencionadas en el vídeo con comas.",

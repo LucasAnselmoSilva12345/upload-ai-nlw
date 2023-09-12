@@ -51,9 +51,7 @@ export function App() {
             />
           </div>
 
-          <p className="text-sm text-muted-foreground">
-            {t('reminder_message')}
-          </p>
+          <p className="text-sm text-emerald-700">{t('ReminderMessage')}</p>
         </section>
 
         <aside className="w-80 space-y-6">
