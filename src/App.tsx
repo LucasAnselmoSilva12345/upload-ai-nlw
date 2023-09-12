@@ -16,19 +16,19 @@ import {
   SelectValue,
 } from './components/ui/select';
 import { Slider } from './components/ui/slider';
+import { useTranslation } from 'react-i18next';
+import { LanguageSwitcher } from './components/LanguageSwitcher/LanguageSwitcher';
 
 export function App() {
+  const { t } = useTranslation();
+
   return (
     <div className="min-h-screen flex flex-col">
       <header className="px-6 py-3 flex items-center justify-between border-b">
         <h1 className="text-xl font-bold">upload.ai</h1>
 
         <div className="flex items-center gap-3">
-          <span className="text-sm text-muted-foreground">
-            Desenvolvido por Lucas Anselmo
-          </span>
-
-          <Separator orientation="vertical" className="h-6" />
+          <LanguageSwitcher />
 
           <Button className="flex items-center gap-2 text-neutral-100">
             GitHub
@@ -42,20 +42,16 @@ export function App() {
           <div className="grid grid-rows-2 gap-4 flex-1">
             <Textarea
               className="resize-none p-4 leading-relaxed"
-              placeholder="Inclua o prompt para a IA..."
+              placeholder={t('textAreaIncludePrompt')}
             />
             <Textarea
               className="resize-none p-4 leading-relaxed"
-              placeholder="Resultado gerado pela IA"
+              placeholder={t('textAreaResultPrompt')}
               readOnly
             />
           </div>
 
-          <p className="text-sm text-muted-foreground">
-            Lembre-se: Você pode utilizar a variável{' '}
-            <code className="text-emerald-400">{'{transcription}'}</code> no seu
-            prompt para adicionar a descrição do vídeo selecionado
-          </p>
+          <p className="text-sm text-emerald-700">{t('ReminderMessage')}</p>
         </section>
 
         <aside className="w-80 space-y-6">
@@ -65,7 +61,7 @@ export function App() {
               className="cursor-pointer border flex rounded-md aspect-video border-dashed text-sm flex-col gap-2 items-center justify-center text-muted-foreground hover:bg-primary/60"
             >
               <FilmReel size={16} weight="regular" />
-              Selecione um vídeo
+              {t('SelectedUploadVideo')}
             </label>
             <input
               type="file"
@@ -79,12 +75,12 @@ export function App() {
 
             <div className="space-y-2">
               <Label htmlFor="transcription_prompt">
-                Prompt de transcrição
+                {t('TranscriptionPrompt')}
               </Label>
               <Textarea
                 id="transcription_prompt"
                 className="h-20 leading-relaxed resize-none"
-                placeholder="Inclua palavras chaves mencionadas no vídeo por virgulas"
+                placeholder={t('keywords')}
               />
             </div>
 
@@ -92,7 +88,7 @@ export function App() {
               type="submit"
               className="w-full text-neutral-100 flex items-center justify-center gap-1"
             >
-              Carregar vídeo <SpinnerGap size={16} weight="regular" />
+              {t('LoadVideo')} <SpinnerGap size={16} weight="regular" />
             </Button>
           </form>
 
@@ -100,25 +96,25 @@ export function App() {
 
           <form className="space-y-6">
             <div className="space-y-2">
-              <Label>Prompt</Label>
+              <Label>{t('Prompt')}</Label>
               <Select>
                 <SelectTrigger>
-                  <SelectValue placeholder="Selecione um prompt" />
+                  <SelectValue placeholder={t('SelectedOnPrompt')} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="title">Titulo do YouTube</SelectItem>
+                  <SelectItem value="title">{t('YouTubeTitle')}</SelectItem>
                   <SelectItem value="description">
-                    Descrição do YouTube
+                    {t('YouTubeDescription')}
                   </SelectItem>
                 </SelectContent>
               </Select>
               <span className="block text-xs text-muted-foreground">
-                Você poderá customizar essa opção em breve
+                {t('CustomizeOption')}
               </span>
             </div>
 
             <div className="space-y-2">
-              <Label>Modelo</Label>
+              <Label>{t('Model')}</Label>
               <Select disabled defaultValue="gpt3.5">
                 <SelectTrigger>
                   <SelectValue />
@@ -128,19 +124,18 @@ export function App() {
                 </SelectContent>
               </Select>
               <span className="block text-xs text-muted-foreground">
-                Você poderá customizar essa opção em breve
+                {t('CustomizeOption')}
               </span>
             </div>
 
             <Separator />
 
             <div className="space-y-4">
-              <Label>Temperatura</Label>
+              <Label>{t('Temperature')}</Label>
               <Slider min={0} max={1} step={0.1} />
 
               <span className="block text-xs text-muted-foreground leading-relaxed">
-                Valores mais altos tendem a deixar o resultado mais criativo e
-                com possíveis erros
+                {t('HigherValuesCreative')}
               </span>
             </div>
 
@@ -150,7 +145,7 @@ export function App() {
               type="submit"
               className="w-full text-neutral-100 flex items-center justify-center gap-1"
             >
-              Executar <MagicWand size={16} weight="regular" />
+              {t('Run')} <MagicWand size={16} weight="regular" />
             </Button>
           </form>
         </aside>

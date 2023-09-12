@@ -1,0 +1,20 @@
+{
+  "translation": {
+    "textAreaIncludePrompt": "Include the prompt for the AI...",
+    "textAreaResultPrompt": "AI-generated result",
+    "ReminderMessage": "Remember: You can use the variable 'transcription' in your prompt to add the description of the selected video.",
+    "SelectedUploadVideo": "Select a video",
+    "TranscriptionPrompt": "Transcription Prompt",
+    "keywords": "Include key words mentioned in the video with commas",
+    "LoadVideo": "LoadVideo",
+    "Prompt": "Prompt",
+    "SelectedOnPrompt": "Select a prompt",
+    "YouTubeTitle": "YouTube Title",
+    "YouTubeDescription": "YouTube Description",
+    "CustomizeOption": "Customize Option",
+    "Model": "Model",
+    "Temperature": "Temperature",
+    "HigherValuesCreative": "Higher Values Creative",
+    "Run": "Run"
+  }
+}
