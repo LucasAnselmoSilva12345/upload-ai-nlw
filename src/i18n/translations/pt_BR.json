@@ -1,0 +1,19 @@
+{
+  "translation": {
+    "textAreaIncludePrompt": "Inclua o prompt para a IA...",
+    "textAreaResultPrompt": "Resultado gerado pela IA",
+    "reminder_message": "Lembre-se: Você pode utilizar a variável <code className=\"text-emerald-400\">{'{transcription}'}</code> no seu prompt para adicionar a descrição do vídeo selecionado.",
+    "SelectedUploadVideo": "Selecione um vídeo",
+    "TranscriptionPrompt": "Prompt de transcrição",
+    "keywords": "Inclua palavras chaves mencionadas no vídeo por virgulas",
+    "LoadVideo": "Carregar vídeo",
+    "Prompt": "Prompt",
+    "SelectedOnPrompt": "Selecione um prompt",
+    "YouTubeTitle": "Título do YouTube",
+    "YouTubeDescription": "Descrição do YouTube",
+    "CustomizeOption": "Você poderá customizar essa opção em breve",
+    "Temperature": "Temperatura",
+    "HigherValuesCreative": "Valores mais altos tendem a deixar o resultado mais criativo e com possíveis erros",
+    "Run": "Executar"
+  }
+}
