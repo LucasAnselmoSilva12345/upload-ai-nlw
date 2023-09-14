@@ -12,13 +12,12 @@ import {
 } from './components/ui/select';
 import { Slider } from './components/ui/slider';
 import { useTranslation } from 'react-i18next';
-import { LanguageSwitcher } from './components/LanguageSwitcher/LanguageSwitcher';
 import { ThemeProvider } from './components/theme-provider';
-import { ModeToggle } from './components/mode-toggle';
 import { VideoInputForm } from './components/video-input-form';
 import { PromptSelect } from './components/prompt-select';
 import { useState } from 'react';
 import { useCompletion } from 'ai/react';
+import { Header } from './components/header';
 
 export function App() {
   const { t } = useTranslation();
@@ -46,13 +45,7 @@ export function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <div className="min-h-screen flex flex-col">
-        <header className="px-6 py-3 flex items-center justify-between border-b">
-          <h1 className="text-xl font-bold">upload.ai</h1>
-          <div className="flex items-center gap-3">
-            <LanguageSwitcher />
-          </div>
-          <ModeToggle />
-        </header>
+        <Header />
 
         <main className="flex-1 p-6 flex flex-col md:flex-row gap-6">
           <section className="flex flex-col flex-1 gap-4">

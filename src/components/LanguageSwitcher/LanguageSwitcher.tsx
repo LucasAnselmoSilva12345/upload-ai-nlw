@@ -20,7 +20,7 @@ export function LanguageSwitcher() {
   const { i18n } = useTranslation();
 
   return (
-    <div className="flex items-center justify-center gap-2">
+    <div className=" flex items-center justify-center">
       {languageOptions.map((languageOption) => (
         <Button
           variant={'outline'}
