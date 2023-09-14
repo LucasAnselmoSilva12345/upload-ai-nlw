@@ -21,6 +21,10 @@ import { PromptSelect } from './components/prompt-select';
 export function App() {
   const { t } = useTranslation();
 
+  function handlePromptSelected(template: string) {
+    console.log(template);
+  }
+
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <div className="min-h-screen flex flex-col">
@@ -64,7 +68,7 @@ export function App() {
             <form className="space-y-6">
               <div className="space-y-2">
                 <Label>{t('Prompt')}</Label>
-                <PromptSelect />
+                <PromptSelect onPromptSelected={handlePromptSelected} />
                 <span className="block text-xs text-muted-foreground">
                   {t('CustomizeOption')}
                 </span>
