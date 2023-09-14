@@ -16,6 +16,7 @@ import { LanguageSwitcher } from './components/LanguageSwitcher/LanguageSwitcher
 import { ThemeProvider } from './components/theme-provider';
 import { ModeToggle } from './components/mode-toggle';
 import { VideoInputForm } from './components/video-input-form';
+import { PromptSelect } from './components/prompt-select';
 
 export function App() {
   const { t } = useTranslation();
@@ -63,17 +64,7 @@ export function App() {
             <form className="space-y-6">
               <div className="space-y-2">
                 <Label>{t('Prompt')}</Label>
-                <Select>
-                  <SelectTrigger>
-                    <SelectValue placeholder={t('SelectedOnPrompt')} />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="title">{t('YouTubeTitle')}</SelectItem>
-                    <SelectItem value="description">
-                      {t('YouTubeDescription')}
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
+                <PromptSelect />
                 <span className="block text-xs text-muted-foreground">
                   {t('CustomizeOption')}
                 </span>
