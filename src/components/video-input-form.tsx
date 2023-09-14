@@ -7,9 +7,21 @@ import { Button } from './ui/button';
 import { FilmReel, SpinnerGap } from '@phosphor-icons/react';
 import { getFFmpeg } from '@/lib/ffmpeg';
 import { fetchFile } from '@ffmpeg/util';
+import { api } from '@/lib/axios';
+
+type Status = 'waiting' | 'converting' | 'uploading' | 'generating' | 'success';
+
+const statusMessage = {
+  converting: 'Convertendo...',
+  generating: 'Transcrevendo...',
+  uploading: 'Carregando...',
+  success: 'Sucesso!',
+};
 
 export function VideoInputForm() {
   const [videoFile, setVideoFile] = useState<File | null>(null);
+  const [status, setStatus] = useState<Status>('waiting');
+
   const promptInputRef = useRef<HTMLTextAreaElement>(null);
 
   function handleFileSelected(event: ChangeEvent<HTMLInputElement>) {
@@ -68,8 +80,22 @@ export function VideoInputForm() {
       return;
     }
 
+    setStatus('converting');
     const audioFile = await convertVideoToAudio(videoFile);
-    console.log(audioFile, prompt);
+
+    const data = new FormData();
+    data.append('file', audioFile);
+
+    setStatus('uploading');
+    const response = await api.post('/videos', data);
+    const videoID = response.data.video.id;
+
+    setStatus('generating');
+    await api.post(`/videos/${videoID}/transcription`, {
+      prompt,
+    });
+
+    setStatus('success');
   }
 
   const previewURL = useMemo(() => {
@@ -114,6 +140,7 @@ export function VideoInputForm() {
       <div className="space-y-2">
         <Label htmlFor="transcription_prompt">{t('TranscriptionPrompt')}</Label>
         <Textarea
+          disabled={status !== 'waiting'}
           ref={promptInputRef}
           id="transcription_prompt"
           className="h-20 leading-relaxed resize-none"
@@ -122,10 +149,18 @@ export function VideoInputForm() {
       </div>
 
       <Button
+        data-success={status === 'success'}
+        disabled={status !== 'waiting'}
         type="submit"
-        className="w-full text-neutral-100 flex items-center justify-center gap-1"
+        className="w-full text-neutral-100 flex items-center justify-center gap-1 data-[success=true]:bg-emerald-950"
       >
-        {t('LoadVideo')} <SpinnerGap size={16} weight="regular" />
+        {status === 'waiting' ? (
+          <>
+            {t('LoadVideo')} <SpinnerGap size={16} weight="regular" />
+          </>
+        ) : (
+          statusMessage[status]
+        )}
       </Button>
     </form>
   );
