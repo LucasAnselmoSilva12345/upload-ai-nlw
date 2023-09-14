@@ -1,4 +1,4 @@
-import { GithubLogo, MagicWand } from '@phosphor-icons/react';
+import { MagicWand } from '@phosphor-icons/react';
 import { Button } from './components/ui/button';
 import { Separator } from './components/ui/separator';
 import { Textarea } from './components/ui/textarea';
@@ -48,20 +48,13 @@ export function App() {
       <div className="min-h-screen flex flex-col">
         <header className="px-6 py-3 flex items-center justify-between border-b">
           <h1 className="text-xl font-bold">upload.ai</h1>
-
-          <ModeToggle />
-
           <div className="flex items-center gap-3">
             <LanguageSwitcher />
-
-            <Button className="flex items-center gap-2 text-neutral-100">
-              GitHub
-              <GithubLogo size={16} weight="regular" />
-            </Button>
           </div>
+          <ModeToggle />
         </header>
 
-        <main className="flex-1 p-6 flex gap-6">
+        <main className="flex-1 p-6 flex flex-col md:flex-row gap-6">
           <section className="flex flex-col flex-1 gap-4">
             <div className="grid grid-rows-2 gap-4 flex-1">
               <Textarea
@@ -81,7 +74,7 @@ export function App() {
             <p className="text-sm text-emerald-700">{t('ReminderMessage')}</p>
           </section>
 
-          <aside className="w-80 space-y-6">
+          <aside className="w-full md:w-80 space-y-6">
             <VideoInputForm onVideoUploaded={setVideoId} />
 
             <Separator />
