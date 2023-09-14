@@ -71,15 +71,17 @@ export function App() {
               />
             </div>
 
-            <p className="text-sm text-emerald-700">{t('ReminderMessage')}</p>
+            <p className="text-sm text-emerald-700 text-center">
+              {t('ReminderMessage')}
+            </p>
           </section>
 
-          <aside className="w-full md:w-80 space-y-6">
+          <aside className="w-full md:w-80 space-y-3">
             <VideoInputForm onVideoUploaded={setVideoId} />
 
             <Separator />
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-3">
               <div className="space-y-2">
                 <Label>{t('Prompt')}</Label>
                 <PromptSelect onPromptSelected={setInput} />
