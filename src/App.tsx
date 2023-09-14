@@ -17,9 +17,11 @@ import { ThemeProvider } from './components/theme-provider';
 import { ModeToggle } from './components/mode-toggle';
 import { VideoInputForm } from './components/video-input-form';
 import { PromptSelect } from './components/prompt-select';
+import { useState } from 'react';
 
 export function App() {
   const { t } = useTranslation();
+  const [temperature, setTemperature] = useState(0.5);
 
   function handlePromptSelected(template: string) {
     console.log(template);
@@ -93,7 +95,13 @@ export function App() {
 
               <div className="space-y-4">
                 <Label>{t('Temperature')}</Label>
-                <Slider min={0} max={1} step={0.1} />
+                <Slider
+                  min={0}
+                  max={1}
+                  step={0.1}
+                  value={[temperature]}
+                  onValueChange={(value) => setTemperature(value[0])}
+                />
 
                 <span className="block text-xs text-muted-foreground leading-relaxed">
                   {t('HigherValuesCreative')}
