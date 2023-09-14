@@ -12,10 +12,10 @@ import { api } from '@/lib/axios';
 type Status = 'waiting' | 'converting' | 'uploading' | 'generating' | 'success';
 
 const statusMessage = {
-  converting: 'Convertendo...',
-  generating: 'Transcrevendo...',
-  uploading: 'Carregando...',
-  success: 'Sucesso!',
+  converting: 'Converting...',
+  generating: 'Generating...',
+  uploading: 'Loading...',
+  success: 'Success!',
 };
 
 interface VideoInputProps {
