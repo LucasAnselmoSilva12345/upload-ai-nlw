@@ -18,14 +18,30 @@ import { ModeToggle } from './components/mode-toggle';
 import { VideoInputForm } from './components/video-input-form';
 import { PromptSelect } from './components/prompt-select';
 import { useState } from 'react';
+import { useCompletion } from 'ai/react';
 
 export function App() {
   const { t } = useTranslation();
   const [temperature, setTemperature] = useState(0.5);
+  const [videoId, setVideoId] = useState<string | null>(null);
 
-  function handlePromptSelected(template: string) {
-    console.log(template);
-  }
+  const {
+    input,
+    setInput,
+    handleInputChange,
+    handleSubmit,
+    completion,
+    isLoading,
+  } = useCompletion({
+    api: 'http://localhost:3333/ai/complete',
+    body: {
+      videoId,
+      temperature,
+    },
+    headers: {
+      'Content-type': 'application/json',
+    },
+  });
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
@@ -51,11 +67,14 @@ export function App() {
               <Textarea
                 className="resize-none p-4 leading-relaxed"
                 placeholder={t('textAreaIncludePrompt')}
+                value={input}
+                onChange={handleInputChange}
               />
               <Textarea
                 className="resize-none p-4 leading-relaxed"
                 placeholder={t('textAreaResultPrompt')}
                 readOnly
+                value={completion}
               />
             </div>
 
@@ -63,14 +82,14 @@ export function App() {
           </section>
 
           <aside className="w-80 space-y-6">
-            <VideoInputForm />
+            <VideoInputForm onVideoUploaded={setVideoId} />
 
             <Separator />
 
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
                 <Label>{t('Prompt')}</Label>
-                <PromptSelect onPromptSelected={handlePromptSelected} />
+                <PromptSelect onPromptSelected={setInput} />
                 <span className="block text-xs text-muted-foreground">
                   {t('CustomizeOption')}
                 </span>
@@ -111,6 +130,7 @@ export function App() {
               <Separator />
 
               <Button
+                disabled={isLoading}
                 type="submit"
                 className="w-full text-neutral-100 flex items-center justify-center gap-1"
               >
