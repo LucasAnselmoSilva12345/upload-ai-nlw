@@ -1,9 +1,4 @@
-import {
-  FilmReel,
-  GithubLogo,
-  MagicWand,
-  SpinnerGap,
-} from '@phosphor-icons/react';
+import { GithubLogo, MagicWand } from '@phosphor-icons/react';
 import { Button } from './components/ui/button';
 import { Separator } from './components/ui/separator';
 import { Textarea } from './components/ui/textarea';
@@ -20,6 +15,7 @@ import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from './components/LanguageSwitcher/LanguageSwitcher';
 import { ThemeProvider } from './components/theme-provider';
 import { ModeToggle } from './components/mode-toggle';
+import { VideoInputForm } from './components/video-input-form';
 
 export function App() {
   const { t } = useTranslation();
@@ -60,42 +56,7 @@ export function App() {
           </section>
 
           <aside className="w-80 space-y-6">
-            <form className="space-y-6">
-              <label
-                htmlFor="video"
-                className="cursor-pointer border flex rounded-md aspect-video border-dashed text-sm flex-col gap-2 items-center justify-center text-muted-foreground hover:bg-primary/60"
-              >
-                <FilmReel size={16} weight="regular" />
-                {t('SelectedUploadVideo')}
-              </label>
-              <input
-                type="file"
-                name=""
-                id="video"
-                accept="video/mp4"
-                className="sr-only"
-              />
-
-              <Separator />
-
-              <div className="space-y-2">
-                <Label htmlFor="transcription_prompt">
-                  {t('TranscriptionPrompt')}
-                </Label>
-                <Textarea
-                  id="transcription_prompt"
-                  className="h-20 leading-relaxed resize-none"
-                  placeholder={t('keywords')}
-                />
-              </div>
-
-              <Button
-                type="submit"
-                className="w-full text-neutral-100 flex items-center justify-center gap-1"
-              >
-                {t('LoadVideo')} <SpinnerGap size={16} weight="regular" />
-              </Button>
-            </form>
+            <VideoInputForm />
 
             <Separator />
 
